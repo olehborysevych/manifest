@@ -55,20 +55,9 @@ export default async function handler(req, res) {
         }
 
         // Captcha verified, increment vote count
-        let newCount = 1;
-
-        // Option 1: Using Vercel KV (recommended for production)
-        // Uncomment this block after setting up Vercel KV
-        /*
+        // Using Vercel KV (Redis) for persistent vote storage
         const { kv } = await import('@vercel/kv');
-        newCount = await kv.incr('vote_count');
-        */
-
-        // Option 2: For testing without KV (not persistent)
-        // In production, you MUST use Vercel KV or another database
-        const currentCount = parseInt(process.env.VOTE_COUNT || 0);
-        newCount = currentCount + 1;
-        // Note: This won't actually persist without a database
+        const newCount = await kv.incr('vote_count');
 
         return res.status(200).json({
             success: true,
