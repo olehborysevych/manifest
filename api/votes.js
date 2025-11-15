@@ -11,16 +11,9 @@ export default async function handler(req, res) {
     }
 
     try {
-        // Option 1: Using Vercel KV (recommended for production)
-        // Uncomment this block after setting up Vercel KV
-        /*
+        // Using Vercel KV (Redis) for persistent vote storage
         const { kv } = await import('@vercel/kv');
         const count = await kv.get('vote_count') || 0;
-        */
-
-        // Option 2: Simple in-memory storage (for testing only - resets on each deployment)
-        // This is a placeholder - in production use Vercel KV or a database
-        const count = process.env.VOTE_COUNT || 0;
 
         return res.status(200).json({
             success: true,
