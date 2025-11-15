@@ -6,6 +6,7 @@
     <title>Manifest Leaflet</title>
     <link rel="stylesheet" href="styles.css">
     <script src="https://js.hcaptcha.com/1/api.js" async defer></script>
+    <script src="https://cdn.jsdelivr.net/npm/qrcodejs@1.0.0/qrcode.min.js"></script>
 </head>
 <body>
     <div class="no-print language-selector">
@@ -26,8 +27,8 @@
 
         <div class="qr-section">
             <h2 id="qr-title">Scan to Learn More</h2>
-            <img id="qrcode" src="qr-code-placeholder.png" alt="QR Code" />
-            <p class="url-text" id="url-text">https://your-site-url.com</p>
+            <div id="qrcode"></div>
+            <p class="url-text" id="url-text"></p>
         </div>
 
         <div class="vote-section no-print">
