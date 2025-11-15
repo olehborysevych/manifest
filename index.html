@@ -1,0 +1,51 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Manifest Leaflet</title>
+    <link rel="stylesheet" href="styles.css">
+    <script src="https://js.hcaptcha.com/1/api.js" async defer></script>
+</head>
+<body>
+    <div class="no-print language-selector">
+        <label for="lang">Language:</label>
+        <select id="lang" onchange="changeLanguage(this.value)">
+            <option value="en">English</option>
+            <option value="uk">Українська</option>
+            <option value="es">Español</option>
+            <option value="fr">Français</option>
+            <option value="de">Deutsch</option>
+        </select>
+    </div>
+
+    <div class="container">
+        <div class="content" id="content">
+            <!-- Content will be inserted by JavaScript -->
+        </div>
+
+        <div class="qr-section">
+            <h2 id="qr-title">Scan to Learn More</h2>
+            <img id="qrcode" src="qr-code-placeholder.png" alt="QR Code" />
+            <p class="url-text" id="url-text">https://your-site-url.com</p>
+        </div>
+
+        <div class="vote-section no-print">
+            <h2 id="vote-title">Support This Message</h2>
+            <div class="h-captcha" data-sitekey="YOUR_HCAPTCHA_SITE_KEY"></div>
+            <button id="vote-btn" onclick="submitVote()">Vote</button>
+            <p class="vote-count">Current votes: <span id="vote-count">0</span></p>
+        </div>
+    </div>
+
+    <footer class="donation-footer">
+        <div class="crypto-wallet">
+            <span id="donation-text">Bitcoin:</span>
+            <code class="wallet-address">bc1qxy2kgdygjrsqtzq2n0yrf2493p83kkfjhx0wlh</code>
+            <button class="copy-btn no-print" onclick="copyWallet()">Copy</button>
+        </div>
+    </footer>
+
+    <script src="script.js"></script>
+</body>
+</html>

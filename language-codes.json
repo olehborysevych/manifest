@@ -1,0 +1,52 @@
+{
+  "tier1": {
+    "description": "Essential - Top 10 languages (67% world population)",
+    "languages": [
+      { "code": "en", "name": "English", "nativeName": "English" },
+      { "code": "zh", "name": "Chinese (Mandarin)", "nativeName": "中文", "rtl": false },
+      { "code": "hi", "name": "Hindi", "nativeName": "हिन्दी" },
+      { "code": "es", "name": "Spanish", "nativeName": "Español" },
+      { "code": "ar", "name": "Arabic", "nativeName": "العربية", "rtl": true },
+      { "code": "bn", "name": "Bengali", "nativeName": "বাংলা" },
+      { "code": "fr", "name": "French", "nativeName": "Français" },
+      { "code": "pt", "name": "Portuguese", "nativeName": "Português" },
+      { "code": "ru", "name": "Russian", "nativeName": "Русский" },
+      { "code": "ur", "name": "Urdu", "nativeName": "اردو", "rtl": true }
+    ]
+  },
+  "tier2": {
+    "description": "High Impact - Next 10 languages (adds 15%, total 82%)",
+    "languages": [
+      { "code": "id", "name": "Indonesian", "nativeName": "Bahasa Indonesia" },
+      { "code": "de", "name": "German", "nativeName": "Deutsch" },
+      { "code": "ja", "name": "Japanese", "nativeName": "日本語" },
+      { "code": "sw", "name": "Swahili", "nativeName": "Kiswahili" },
+      { "code": "pa", "name": "Punjabi", "nativeName": "ਪੰਜਾਬੀ" },
+      { "code": "mr", "name": "Marathi", "nativeName": "मराठी" },
+      { "code": "te", "name": "Telugu", "nativeName": "తెలుగు" },
+      { "code": "tr", "name": "Turkish", "nativeName": "Türkçe" },
+      { "code": "ko", "name": "Korean", "nativeName": "한국어" },
+      { "code": "ta", "name": "Tamil", "nativeName": "தமிழ்" }
+    ]
+  },
+  "tier3": {
+    "description": "Regional Importance - Next 10 languages (adds 5%, total 87%)",
+    "languages": [
+      { "code": "vi", "name": "Vietnamese", "nativeName": "Tiếng Việt" },
+      { "code": "it", "name": "Italian", "nativeName": "Italiano" },
+      { "code": "th", "name": "Thai", "nativeName": "ไทย" },
+      { "code": "pl", "name": "Polish", "nativeName": "Polski" },
+      { "code": "uk", "name": "Ukrainian", "nativeName": "Українська" },
+      { "code": "fa", "name": "Persian (Farsi)", "nativeName": "فارسی", "rtl": true },
+      { "code": "ro", "name": "Romanian", "nativeName": "Română" },
+      { "code": "nl", "name": "Dutch", "nativeName": "Nederlands" },
+      { "code": "el", "name": "Greek", "nativeName": "Ελληνικά" },
+      { "code": "cs", "name": "Czech", "nativeName": "Čeština" }
+    ]
+  },
+  "notes": {
+    "rtl": "Languages marked with 'rtl: true' require right-to-left text direction",
+    "usage": "Use language codes with ISO 639-1 standard",
+    "translation": "Use LLMs (Claude, GPT-4) for initial translations, then review with native speakers"
+  }
+}
