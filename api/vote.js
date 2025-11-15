@@ -56,33 +56,13 @@ export default async function handler(req, res) {
             });
         }
 
-        // Get user's IP address
-        const ip = req.headers['x-forwarded-for']?.split(',')[0] ||
-                   req.headers['x-real-ip'] ||
-                   req.socket.remoteAddress ||
-                   'unknown';
-
-        // Captcha verified, check IP and increment vote count
+        // Captcha verified, increment vote count
         // Using Redis for persistent vote storage
         const redis = new Redis(process.env.KV_REDIS_URL);
 
         try {
-            // Check if this IP has already voted (within 24 hours)
-            const ipKey = `voted_ip:${ip}`;
-            const hasVoted = await redis.get(ipKey);
-
-            if (hasVoted) {
-                return res.status(429).json({
-                    success: false,
-                    error: 'You have already voted. Please try again later.'
-                });
-            }
-
             // Increment vote count
             const newCount = await redis.incr('vote_count');
-
-            // Mark this IP as voted (expires in 24 hours = 86400 seconds)
-            await redis.setex(ipKey, 86400, Date.now().toString());
 
             return res.status(200).json({
                 success: true,
