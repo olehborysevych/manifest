@@ -61,6 +61,7 @@ export default async function handler(req, res) {
         const redis = new Redis(process.env.KV_REDIS_URL);
 
         try {
+            // Increment vote count
             const newCount = await redis.incr('vote_count');
 
             return res.status(200).json({
