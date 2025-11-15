@@ -197,6 +197,27 @@ async function submitVote() {
     }
 }
 
+// Generate QR code
+function generateQRCode() {
+    const qrcodeContainer = document.getElementById('qrcode');
+    qrcodeContainer.innerHTML = ''; // Clear existing QR code
+
+    const currentUrl = window.location.origin || 'https://your-manifest-site.vercel.app';
+
+    // Update URL text
+    document.getElementById('url-text').textContent = currentUrl;
+
+    // Generate QR code
+    new QRCode(qrcodeContainer, {
+        text: currentUrl,
+        width: 150,
+        height: 150,
+        colorDark: '#000000',
+        colorLight: '#ffffff',
+        correctLevel: QRCode.CorrectLevel.H
+    });
+}
+
 // Initialize on page load
 document.addEventListener('DOMContentLoaded', () => {
     // Detect and set language
@@ -209,4 +230,7 @@ document.addEventListener('DOMContentLoaded', () => {
 
     // Load vote count
     loadVoteCount();
+
+    // Generate QR code
+    generateQRCode();
 });
