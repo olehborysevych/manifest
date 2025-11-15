@@ -149,8 +149,30 @@ async function loadVoteCount() {
     }
 }
 
+// Check if user has already voted
+function hasVoted() {
+    const voteTimestamp = localStorage.getItem('voted_at');
+    if (!voteTimestamp) return false;
+
+    // Allow voting again after 24 hours
+    const ONE_DAY = 24 * 60 * 60 * 1000;
+    const timeSinceVote = Date.now() - parseInt(voteTimestamp);
+    return timeSinceVote < ONE_DAY;
+}
+
+// Mark user as voted
+function markAsVoted() {
+    localStorage.setItem('voted_at', Date.now().toString());
+}
+
 // Submit vote
 async function submitVote() {
+    // Check if already voted
+    if (hasVoted()) {
+        alert('You have already voted. You can vote again in 24 hours.');
+        return;
+    }
+
     const captchaResponse = hcaptcha.getResponse();
 
     if (!captchaResponse) {
@@ -180,17 +202,21 @@ async function submitVote() {
             btn.textContent = 'Voted!';
             hcaptcha.reset();
 
+            // Mark as voted in localStorage
+            markAsVoted();
+
             setTimeout(() => {
-                btn.disabled = false;
+                btn.disabled = true;
                 const t = translations[document.getElementById('lang').value];
-                btn.textContent = t.voteButton;
-            }, 3000);
+                btn.textContent = 'Already Voted';
+            }, 2000);
         } else {
             throw new Error(data.error || 'Failed to submit vote');
         }
     } catch (error) {
         console.error('Error submitting vote:', error);
-        alert('Error submitting vote. Please try again.');
+        const errorMsg = error.message || 'Error submitting vote. Please try again.';
+        alert(errorMsg);
         btn.disabled = false;
         const t = translations[document.getElementById('lang').value];
         btn.textContent = t.voteButton;
@@ -233,4 +259,11 @@ document.addEventListener('DOMContentLoaded', () => {
 
     // Generate QR code
     generateQRCode();
+
+    // Check if user has already voted
+    if (hasVoted()) {
+        const btn = document.getElementById('vote-btn');
+        btn.disabled = true;
+        btn.textContent = 'Already Voted';
+    }
 });
