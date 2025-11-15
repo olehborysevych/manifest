@@ -199,14 +199,21 @@ async function submitVote() {
 
         if (data.success) {
             document.getElementById('vote-count').textContent = data.count;
-            btn.textContent = 'Voted!';
-            hcaptcha.reset();
 
             // Mark as voted in localStorage
             markAsVoted();
 
+            // Hide the captcha widget
+            const captchaContainer = document.querySelector('.h-captcha');
+            if (captchaContainer) {
+                captchaContainer.style.display = 'none';
+            }
+
+            // Keep button disabled and update text
+            btn.disabled = true;
+            btn.textContent = 'Voted!';
+
             setTimeout(() => {
-                btn.disabled = true;
                 const t = translations[document.getElementById('lang').value];
                 btn.textContent = 'Already Voted';
             }, 2000);
@@ -265,5 +272,11 @@ document.addEventListener('DOMContentLoaded', () => {
         const btn = document.getElementById('vote-btn');
         btn.disabled = true;
         btn.textContent = 'Already Voted';
+
+        // Hide the captcha widget
+        const captchaContainer = document.querySelector('.h-captcha');
+        if (captchaContainer) {
+            captchaContainer.style.display = 'none';
+        }
     }
 });
