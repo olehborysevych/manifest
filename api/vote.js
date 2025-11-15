@@ -1,5 +1,7 @@
 // API endpoint to submit a vote with hCaptcha verification
-// Works with Vercel KV (Redis) for vote storage
+// Works with Redis via direct connection
+
+import Redis from 'ioredis';
 
 export default async function handler(req, res) {
     // Set CORS headers
@@ -55,15 +57,21 @@ export default async function handler(req, res) {
         }
 
         // Captcha verified, increment vote count
-        // Using Vercel KV (Redis) for persistent vote storage
-        const { kv } = await import('@vercel/kv');
-        const newCount = await kv.incr('vote_count');
+        // Using Redis for persistent vote storage
+        const redis = new Redis(process.env.KV_REDIS_URL);
 
-        return res.status(200).json({
-            success: true,
-            count: newCount,
-            message: 'Vote recorded successfully'
-        });
+        try {
+            const newCount = await redis.incr('vote_count');
+
+            return res.status(200).json({
+                success: true,
+                count: newCount,
+                message: 'Vote recorded successfully'
+            });
+        } finally {
+            // Close Redis connection
+            redis.disconnect();
+        }
     } catch (error) {
         console.error('Error processing vote:', error);
         return res.status(500).json({
