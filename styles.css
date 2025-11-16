@@ -167,6 +167,43 @@ body[dir="rtl"] .content p {
     background-color: #444;
 }
 
+.footer-links {
+    margin-top: 10px;
+    padding-top: 10px;
+    border-top: 1px solid #e0e0e0;
+}
+
+.footer-links a {
+    color: #666;
+    text-decoration: none;
+    font-size: 0.9em;
+    transition: color 0.2s;
+}
+
+.footer-links a:hover {
+    color: #333;
+    text-decoration: underline;
+}
+
+/* Disclaimer page specific styles */
+.disclaimer-footer {
+    margin-top: 30px;
+    padding-top: 20px;
+    border-top: 1px solid #e0e0e0;
+    text-align: center;
+}
+
+.disclaimer-footer a {
+    color: #666;
+    text-decoration: none;
+    transition: color 0.2s;
+}
+
+.disclaimer-footer a:hover {
+    color: #333;
+    text-decoration: underline;
+}
+
 /* Print styles */
 @media print {
     body {
