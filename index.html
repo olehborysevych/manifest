@@ -24,6 +24,13 @@
 </head>
 <body>
     <div class="no-print language-selector">
+        <div class="theme-toggle" onclick="toggleTheme()">
+            <div class="toggle-switch">
+                <span class="toggle-icon sun-icon">☀️</span>
+                <span class="toggle-icon moon-icon">🌙</span>
+                <div class="toggle-slider"></div>
+            </div>
+        </div>
         <label for="lang">Language:</label>
         <select id="lang" onchange="changeLanguage(this.value)">
             <option value="en">English</option>

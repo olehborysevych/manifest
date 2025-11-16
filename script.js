@@ -1,6 +1,60 @@
 // RTL (Right-to-Left) languages
 const rtlLanguages = ['ar', 'ur', 'fa', 'he'];
 
+// Dark mode functionality
+function detectPreferredTheme() {
+    // Check if user has a saved preference
+    const savedTheme = localStorage.getItem('preferredTheme');
+    if (savedTheme) {
+        return savedTheme;
+    }
+
+    // Check browser/OS preference
+    if (window.matchMedia && window.matchMedia('(prefers-color-scheme: dark)').matches) {
+        return 'dark';
+    }
+
+    return 'light';
+}
+
+function applyTheme(theme) {
+    const root = document.documentElement;
+    root.setAttribute('data-theme', theme);
+    localStorage.setItem('preferredTheme', theme);
+}
+
+function toggleTheme() {
+    const currentTheme = document.documentElement.getAttribute('data-theme') || 'light';
+    const newTheme = currentTheme === 'dark' ? 'light' : 'dark';
+    applyTheme(newTheme);
+
+    // Regenerate QR code with new colors
+    if (typeof generateQRCode === 'function') {
+        generateQRCode();
+    }
+}
+
+// Apply theme immediately to prevent flash
+(function() {
+    const theme = detectPreferredTheme();
+    document.documentElement.setAttribute('data-theme', theme);
+})();
+
+// Listen for system theme changes
+if (window.matchMedia) {
+    window.matchMedia('(prefers-color-scheme: dark)').addEventListener('change', (e) => {
+        // Only auto-switch if user hasn't manually set a preference
+        const savedTheme = localStorage.getItem('preferredTheme');
+        if (!savedTheme) {
+            const newTheme = e.matches ? 'dark' : 'light';
+            applyTheme(newTheme);
+            if (typeof generateQRCode === 'function') {
+                generateQRCode();
+            }
+        }
+    });
+}
+
 // Multi-language content
 const translations = {
     en: {
@@ -294,13 +348,18 @@ function generateQRCode() {
     // Update URL text
     document.getElementById('url-text').textContent = currentUrl;
 
+    // Get current theme to set QR code colors
+    const currentTheme = document.documentElement.getAttribute('data-theme') || 'light';
+    const colorDark = currentTheme === 'dark' ? '#e8e8e8' : '#000000';
+    const colorLight = currentTheme === 'dark' ? '#1a1a1a' : '#ffffff';
+
     // Generate QR code
     new QRCode(qrcodeContainer, {
         text: currentUrl,
         width: 150,
         height: 150,
-        colorDark: '#000000',
-        colorLight: '#ffffff',
+        colorDark: colorDark,
+        colorLight: colorLight,
         correctLevel: QRCode.CorrectLevel.H
     });
 }

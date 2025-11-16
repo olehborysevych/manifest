@@ -1,6 +1,52 @@
 // RTL (Right-to-Left) languages
 const rtlLanguages = ['ar', 'ur', 'fa', 'he'];
 
+// Dark mode functionality
+function detectPreferredTheme() {
+    // Check if user has a saved preference
+    const savedTheme = localStorage.getItem('preferredTheme');
+    if (savedTheme) {
+        return savedTheme;
+    }
+
+    // Check browser/OS preference
+    if (window.matchMedia && window.matchMedia('(prefers-color-scheme: dark)').matches) {
+        return 'dark';
+    }
+
+    return 'light';
+}
+
+function applyTheme(theme) {
+    const root = document.documentElement;
+    root.setAttribute('data-theme', theme);
+    localStorage.setItem('preferredTheme', theme);
+}
+
+function toggleTheme() {
+    const currentTheme = document.documentElement.getAttribute('data-theme') || 'light';
+    const newTheme = currentTheme === 'dark' ? 'light' : 'dark';
+    applyTheme(newTheme);
+}
+
+// Apply theme immediately to prevent flash
+(function() {
+    const theme = detectPreferredTheme();
+    document.documentElement.setAttribute('data-theme', theme);
+})();
+
+// Listen for system theme changes
+if (window.matchMedia) {
+    window.matchMedia('(prefers-color-scheme: dark)').addEventListener('change', (e) => {
+        // Only auto-switch if user hasn't manually set a preference
+        const savedTheme = localStorage.getItem('preferredTheme');
+        if (!savedTheme) {
+            const newTheme = e.matches ? 'dark' : 'light';
+            applyTheme(newTheme);
+        }
+    });
+}
+
 // Multi-language content for disclaimer
 const translations = {
     en: {

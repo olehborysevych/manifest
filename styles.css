@@ -4,13 +4,128 @@
     box-sizing: border-box;
 }
 
+:root {
+    /* Light mode colors (default) */
+    --bg-primary: #fff;
+    --bg-secondary: #f5f5f5;
+    --bg-tertiary: #f9f9f9;
+    --text-primary: #333;
+    --text-secondary: #666;
+    --text-tertiary: #888;
+    --text-link: #666;
+    --text-link-hover: #333;
+    --border-primary: #333;
+    --border-secondary: #ddd;
+    --border-tertiary: #e0e0e0;
+    --border-light: #ccc;
+    --border-share: #d0d0d0;
+    --border-share-hover: #999;
+    --wallet-bg: #fff;
+    --wallet-text: #555;
+    --button-primary: #4CAF50;
+    --button-primary-hover: #45a049;
+    --button-disabled: #ccc;
+    --button-secondary: #666;
+    --button-secondary-hover: #444;
+    --share-btn-hover-bg: #f5f5f5;
+    --share-btn-text: #666;
+    --share-btn-text-hover: #444;
+}
+
+/* Dark mode - browser preference */
+@media (prefers-color-scheme: dark) {
+    :root:not([data-theme="light"]) {
+        --bg-primary: #1a1a1a;
+        --bg-secondary: #2d2d2d;
+        --bg-tertiary: #252525;
+        --text-primary: #e8e8e8;
+        --text-secondary: #b8b8b8;
+        --text-tertiary: #999;
+        --text-link: #b8b8b8;
+        --text-link-hover: #e8e8e8;
+        --border-primary: #999;
+        --border-secondary: #444;
+        --border-tertiary: #333;
+        --border-light: #555;
+        --border-share: #555;
+        --border-share-hover: #888;
+        --wallet-bg: #2d2d2d;
+        --wallet-text: #b8b8b8;
+        --button-primary: #5cb860;
+        --button-primary-hover: #4CAF50;
+        --button-disabled: #555;
+        --button-secondary: #888;
+        --button-secondary-hover: #aaa;
+        --share-btn-hover-bg: #363636;
+        --share-btn-text: #b8b8b8;
+        --share-btn-text-hover: #e8e8e8;
+    }
+}
+
+/* Dark mode - manual override */
+:root[data-theme="dark"] {
+    --bg-primary: #1a1a1a;
+    --bg-secondary: #2d2d2d;
+    --bg-tertiary: #252525;
+    --text-primary: #e8e8e8;
+    --text-secondary: #b8b8b8;
+    --text-tertiary: #999;
+    --text-link: #b8b8b8;
+    --text-link-hover: #e8e8e8;
+    --border-primary: #999;
+    --border-secondary: #444;
+    --border-tertiary: #333;
+    --border-light: #555;
+    --border-share: #555;
+    --border-share-hover: #888;
+    --wallet-bg: #2d2d2d;
+    --wallet-text: #b8b8b8;
+    --button-primary: #5cb860;
+    --button-primary-hover: #4CAF50;
+    --button-disabled: #555;
+    --button-secondary: #888;
+    --button-secondary-hover: #aaa;
+    --share-btn-hover-bg: #363636;
+    --share-btn-text: #b8b8b8;
+    --share-btn-text-hover: #e8e8e8;
+}
+
+/* Light mode - manual override */
+:root[data-theme="light"] {
+    --bg-primary: #fff;
+    --bg-secondary: #f5f5f5;
+    --bg-tertiary: #f9f9f9;
+    --text-primary: #333;
+    --text-secondary: #666;
+    --text-tertiary: #888;
+    --text-link: #666;
+    --text-link-hover: #333;
+    --border-primary: #333;
+    --border-secondary: #ddd;
+    --border-tertiary: #e0e0e0;
+    --border-light: #ccc;
+    --border-share: #d0d0d0;
+    --border-share-hover: #999;
+    --wallet-bg: #fff;
+    --wallet-text: #555;
+    --button-primary: #4CAF50;
+    --button-primary-hover: #45a049;
+    --button-disabled: #ccc;
+    --button-secondary: #666;
+    --button-secondary-hover: #444;
+    --share-btn-hover-bg: #f5f5f5;
+    --share-btn-text: #666;
+    --share-btn-text-hover: #444;
+}
+
 body {
     font-family: Georgia, 'Times New Roman', serif;
     line-height: 1.6;
-    color: #333;
-    background-color: #fff;
+    color: var(--text-primary);
+    background-color: var(--bg-primary);
     padding: 20px;
     direction: ltr;
+    transition: background-color 0.3s ease, color 0.3s ease;
 }
 
 /* Right-to-left language support */
@@ -25,20 +140,83 @@ body[dir="rtl"] .content p {
 .container {
     max-width: 800px;
     margin: 0 auto;
-    background: white;
+    background: var(--bg-primary);
 }
 
 .language-selector {
     text-align: right;
     margin-bottom: 20px;
     padding: 10px;
+    display: flex;
+    justify-content: flex-end;
+    align-items: center;
+    gap: 15px;
 }
 
 .language-selector select {
     padding: 5px 10px;
     font-size: 14px;
-    border: 1px solid #ccc;
+    border: 1px solid var(--border-light);
     border-radius: 4px;
+    background-color: var(--bg-primary);
+    color: var(--text-primary);
+    transition: background-color 0.3s ease, color 0.3s ease, border-color 0.3s ease;
+}
+
+/* Theme toggle switch */
+.theme-toggle {
+    display: flex;
+    align-items: center;
+    gap: 8px;
+    cursor: pointer;
+    user-select: none;
+}
+
+.theme-toggle-label {
+    font-size: 14px;
+    color: var(--text-secondary);
+}
+
+.toggle-switch {
+    position: relative;
+    width: 48px;
+    height: 24px;
+    background-color: var(--bg-secondary);
+    border-radius: 12px;
+    border: 1px solid var(--border-secondary);
+    transition: background-color 0.3s ease;
+    cursor: pointer;
+}
+
+.toggle-slider {
+    position: absolute;
+    top: 2px;
+    left: 2px;
+    width: 18px;
+    height: 18px;
+    background-color: var(--text-primary);
+    border-radius: 50%;
+    transition: transform 0.3s ease;
+}
+
+:root[data-theme="dark"] .toggle-slider {
+    transform: translateX(24px);
+}
+
+.toggle-icon {
+    position: absolute;
+    top: 50%;
+    transform: translateY(-50%);
+    font-size: 12px;
+    line-height: 1;
+}
+
+.sun-icon {
+    left: 5px;
+}
+
+.moon-icon {
+    right: 5px;
 }
 
 .content {
@@ -61,7 +239,8 @@ body[dir="rtl"] .content p {
     text-align: center;
     margin: 30px 0;
     padding: 20px;
-    border: 2px dashed #333;
+    border: 2px dashed var(--border-primary);
+    transition: border-color 0.3s ease;
 }
 
 .qr-section h2 {
@@ -71,6 +250,9 @@ body[dir="rtl"] .content p {
 #qrcode {
     display: inline-block;
     margin: 20px auto;
+    padding: 10px;
+    background: var(--bg-primary);
+    border-radius: 8px;
 }
 
 #qrcode img {
@@ -82,7 +264,7 @@ body[dir="rtl"] .content p {
 
 .url-text {
     font-size: 0.9em;
-    color: #666;
+    color: var(--text-secondary);
     margin-top: 10px;
 }
 
@@ -90,8 +272,9 @@ body[dir="rtl"] .content p {
     text-align: center;
     margin: 30px 0;
     padding: 20px;
-    background: #f5f5f5;
+    background: var(--bg-secondary);
     border-radius: 8px;
+    transition: background-color 0.3s ease;
 }
 
 .vote-section h2 {
@@ -99,7 +282,7 @@ body[dir="rtl"] .content p {
 }
 
 #vote-btn {
-    background-color: #4CAF50;
+    background-color: var(--button-primary);
     color: white;
     padding: 12px 30px;
     font-size: 16px;
@@ -107,14 +290,15 @@ body[dir="rtl"] .content p {
     border-radius: 4px;
     cursor: pointer;
     margin-top: 15px;
+    transition: background-color 0.3s ease;
 }
 
 #vote-btn:hover {
-    background-color: #45a049;
+    background-color: var(--button-primary-hover);
 }
 
 #vote-btn:disabled {
-    background-color: #ccc;
+    background-color: var(--button-disabled);
     cursor: not-allowed;
 }
 
@@ -128,20 +312,22 @@ body[dir="rtl"] .content p {
 .main-footer {
     margin-top: 40px;
     padding: 15px 20px;
-    background-color: #f9f9f9;
-    border-top: 1px solid #e0e0e0;
+    background-color: var(--bg-tertiary);
+    border-top: 1px solid var(--border-tertiary);
     text-align: center;
     font-size: 0.85em;
+    transition: background-color 0.3s ease, border-color 0.3s ease;
 }
 
 /* Donation section (hidden for now) */
 .donation-footer {
     margin-top: 40px;
     padding: 15px 20px;
-    background-color: #f9f9f9;
-    border-top: 1px solid #e0e0e0;
+    background-color: var(--bg-tertiary);
+    border-top: 1px solid var(--border-tertiary);
     text-align: center;
     font-size: 0.85em;
+    transition: background-color 0.3s ease, border-color 0.3s ease;
 }
 
 .crypto-wallet {
@@ -153,17 +339,18 @@ body[dir="rtl"] .content p {
 }
 
 .wallet-address {
-    background: #fff;
+    background: var(--wallet-bg);
     padding: 6px 12px;
-    border: 1px solid #ddd;
+    border: 1px solid var(--border-secondary);
     border-radius: 3px;
     font-family: 'Courier New', monospace;
     font-size: 0.9em;
-    color: #555;
+    color: var(--wallet-text);
+    transition: background-color 0.3s ease, border-color 0.3s ease, color 0.3s ease;
 }
 
 .copy-btn {
-    background-color: #666;
+    background-color: var(--button-secondary);
     color: white;
     padding: 6px 12px;
     border: none;
@@ -174,24 +361,25 @@ body[dir="rtl"] .content p {
 }
 
 .copy-btn:hover {
-    background-color: #444;
+    background-color: var(--button-secondary-hover);
 }
 
 .footer-links {
     margin-top: 10px;
     padding-top: 10px;
-    border-top: 1px solid #e0e0e0;
+    border-top: 1px solid var(--border-tertiary);
+    transition: border-color 0.3s ease;
 }
 
 .footer-links a {
-    color: #666;
+    color: var(--text-link);
     text-decoration: none;
     font-size: 0.9em;
     transition: color 0.2s;
 }
 
 .footer-links a:hover {
-    color: #333;
+    color: var(--text-link-hover);
     text-decoration: underline;
 }
 
@@ -203,7 +391,7 @@ body[dir="rtl"] .content p {
 .share-section h3 {
     font-size: 0.95em;
     margin-bottom: 12px;
-    color: #888;
+    color: var(--text-tertiary);
     font-weight: 400;
     letter-spacing: 0.3px;
 }
@@ -222,11 +410,11 @@ body[dir="rtl"] .content p {
     padding: 6px 12px;
     border-radius: 3px;
     text-decoration: none;
-    color: #666;
+    color: var(--share-btn-text);
     font-size: 0.8em;
     font-weight: 400;
     transition: all 0.2s ease;
-    border: 1px solid #d0d0d0;
+    border: 1px solid var(--border-share);
     background-color: transparent;
     cursor: pointer;
     font-family: inherit;
@@ -238,9 +426,9 @@ body[dir="rtl"] .content p {
 }
 
 .share-btn:hover {
-    background-color: #f5f5f5;
-    border-color: #999;
-    color: #444;
+    background-color: var(--share-btn-hover-bg);
+    border-color: var(--border-share-hover);
+    color: var(--share-btn-text-hover);
 }
 
 .share-btn:hover svg {
@@ -261,18 +449,19 @@ body[dir="rtl"] .content p {
 .disclaimer-footer {
     margin-top: 30px;
     padding-top: 20px;
-    border-top: 1px solid #e0e0e0;
+    border-top: 1px solid var(--border-tertiary);
     text-align: center;
+    transition: border-color 0.3s ease;
 }
 
 .disclaimer-footer a {
-    color: #666;
+    color: var(--text-link);
     text-decoration: none;
     transition: color 0.2s;
 }
 
 .disclaimer-footer a:hover {
-    color: #333;
+    color: var(--text-link-hover);
     text-decoration: underline;
 }
 
