@@ -23,10 +23,14 @@ function applyTheme(theme) {
     localStorage.setItem('preferredTheme', theme);
 }
 
+function changeTheme(theme) {
+    applyTheme(theme);
+}
+
 function toggleTheme() {
     const currentTheme = document.documentElement.getAttribute('data-theme') || 'light';
     const newTheme = currentTheme === 'dark' ? 'light' : 'dark';
-    applyTheme(newTheme);
+    changeTheme(newTheme);
 }
 
 // Apply theme immediately to prevent flash
@@ -135,6 +139,10 @@ function changeLanguage(lang) {
 
 // Initialize on page load
 document.addEventListener('DOMContentLoaded', () => {
+    // Detect and set theme
+    const theme = detectPreferredTheme();
+    document.getElementById('theme').value = theme;
+
     // Detect and set language
     const savedLang = localStorage.getItem('preferredLanguage');
     const detectedLang = detectLanguage();
