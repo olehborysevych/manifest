@@ -17,7 +17,8 @@ const translations = {
         voteCount: "Current votes:",
         donationTitle: "Support Us",
         donationText: "Bitcoin:",
-        copyButton: "Copy Address"
+        copyButton: "Copy Address",
+        disclaimerLink: "Disclaimer"
     },
     uk: {
         title: "Наш Маніфест",
@@ -33,7 +34,8 @@ const translations = {
         voteCount: "Поточна кількість голосів:",
         donationTitle: "Підтримайте нас",
         donationText: "Bitcoin:",
-        copyButton: "Копіювати адресу"
+        copyButton: "Копіювати адресу",
+        disclaimerLink: "Дісклеймер"
     },
     es: {
         title: "Nuestro Manifiesto",
@@ -49,7 +51,8 @@ const translations = {
         voteCount: "Votos actuales:",
         donationTitle: "Apóyanos",
         donationText: "Bitcoin:",
-        copyButton: "Copiar dirección"
+        copyButton: "Copiar dirección",
+        disclaimerLink: "Descargo de Responsabilidad"
     },
     fr: {
         title: "Notre Manifeste",
@@ -65,7 +68,8 @@ const translations = {
         voteCount: "Votes actuels:",
         donationTitle: "Soutenez-nous",
         donationText: "Bitcoin:",
-        copyButton: "Copier l'adresse"
+        copyButton: "Copier l'adresse",
+        disclaimerLink: "Avertissement"
     },
     de: {
         title: "Unser Manifest",
@@ -81,7 +85,8 @@ const translations = {
         voteCount: "Aktuelle Stimmen:",
         donationTitle: "Unterstütze uns",
         donationText: "Bitcoin:",
-        copyButton: "Adresse kopieren"
+        copyButton: "Adresse kopieren",
+        disclaimerLink: "Haftungsausschluss"
     }
 };
 
@@ -109,6 +114,7 @@ function changeLanguage(lang) {
     document.getElementById('vote-btn').textContent = t.voteButton;
     document.getElementById('vote-count').previousSibling.textContent = t.voteCount + ' ';
     document.getElementById('donation-text').textContent = t.donationText;
+    document.getElementById('disclaimer-link').textContent = t.disclaimerLink;
 
     const copyBtns = document.querySelectorAll('.copy-btn');
     copyBtns.forEach(btn => btn.textContent = t.copyButton);

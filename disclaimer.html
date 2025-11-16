@@ -1,0 +1,33 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Disclaimer - Manifest Leaflet</title>
+    <link rel="stylesheet" href="styles.css">
+</head>
+<body>
+    <div class="no-print language-selector">
+        <label for="lang">Language:</label>
+        <select id="lang" onchange="changeLanguage(this.value)">
+            <option value="en">English</option>
+            <option value="uk">Українська</option>
+            <option value="es">Español</option>
+            <option value="fr">Français</option>
+            <option value="de">Deutsch</option>
+        </select>
+    </div>
+
+    <div class="container">
+        <div class="content" id="content">
+            <!-- Content will be inserted by JavaScript -->
+        </div>
+
+        <div class="disclaimer-footer">
+            <p><a href="index.html" id="back-link">← Back to Main Page</a></p>
+        </div>
+    </div>
+
+    <script src="disclaimer.js"></script>
+</body>
+</html>
