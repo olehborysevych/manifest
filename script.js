@@ -18,7 +18,14 @@ const translations = {
         donationTitle: "Support Us",
         donationText: "Bitcoin:",
         copyButton: "Copy Address",
-        disclaimerLink: "Disclaimer"
+        disclaimerLink: "Disclaimer",
+        shareTitle: "Share this movement",
+        shareText: "Take February 29th off! Join the My Day 29 movement and support making leap day a global day off.",
+        shareNative: "Share",
+        shareTwitter: "Twitter",
+        shareFacebook: "Facebook",
+        shareWhatsApp: "WhatsApp",
+        shareTelegram: "Telegram"
     },
     uk: {
         title: "Наш Маніфест",
@@ -35,7 +42,14 @@ const translations = {
         donationTitle: "Підтримайте нас",
         donationText: "Bitcoin:",
         copyButton: "Копіювати адресу",
-        disclaimerLink: "Дісклеймер"
+        disclaimerLink: "Дісклеймер",
+        shareTitle: "Поділитися рухом",
+        shareText: "Візьміть вихідний 29 лютого! Приєднуйтесь до руху My Day 29 і підтримайте перетворення високосного дня на глобальний вихідний.",
+        shareNative: "Поділитися",
+        shareTwitter: "Twitter",
+        shareFacebook: "Facebook",
+        shareWhatsApp: "WhatsApp",
+        shareTelegram: "Telegram"
     },
     es: {
         title: "Nuestro Manifiesto",
@@ -52,7 +66,14 @@ const translations = {
         donationTitle: "Apóyanos",
         donationText: "Bitcoin:",
         copyButton: "Copiar dirección",
-        disclaimerLink: "Descargo de Responsabilidad"
+        disclaimerLink: "Descargo de Responsabilidad",
+        shareTitle: "Comparte este movimiento",
+        shareText: "¡Tómate el 29 de febrero libre! Únete al movimiento My Day 29 y apoya hacer del día bisiesto un día libre global.",
+        shareNative: "Compartir",
+        shareTwitter: "Twitter",
+        shareFacebook: "Facebook",
+        shareWhatsApp: "WhatsApp",
+        shareTelegram: "Telegram"
     },
     fr: {
         title: "Notre Manifeste",
@@ -69,7 +90,14 @@ const translations = {
         donationTitle: "Soutenez-nous",
         donationText: "Bitcoin:",
         copyButton: "Copier l'adresse",
-        disclaimerLink: "Avertissement"
+        disclaimerLink: "Avertissement",
+        shareTitle: "Partagez ce mouvement",
+        shareText: "Prenez le 29 février de congé ! Rejoignez le mouvement My Day 29 et soutenez la transformation du jour bissextile en jour férié mondial.",
+        shareNative: "Partager",
+        shareTwitter: "Twitter",
+        shareFacebook: "Facebook",
+        shareWhatsApp: "WhatsApp",
+        shareTelegram: "Telegram"
     },
     de: {
         title: "Unser Manifest",
@@ -86,7 +114,14 @@ const translations = {
         donationTitle: "Unterstütze uns",
         donationText: "Bitcoin:",
         copyButton: "Adresse kopieren",
-        disclaimerLink: "Haftungsausschluss"
+        disclaimerLink: "Haftungsausschluss",
+        shareTitle: "Teile diese Bewegung",
+        shareText: "Nimm dir den 29. Februar frei! Schließe dich der My Day 29 Bewegung an und unterstütze die Umwandlung des Schalttags in einen weltweiten freien Tag.",
+        shareNative: "Teilen",
+        shareTwitter: "Twitter",
+        shareFacebook: "Facebook",
+        shareWhatsApp: "WhatsApp",
+        shareTelegram: "Telegram"
     }
 };
 
@@ -113,11 +148,18 @@ function changeLanguage(lang) {
     document.getElementById('vote-title').textContent = t.voteTitle;
     document.getElementById('vote-btn').textContent = t.voteButton;
     document.getElementById('vote-count').previousSibling.textContent = t.voteCount + ' ';
-    document.getElementById('donation-text').textContent = t.donationText;
     document.getElementById('disclaimer-link').textContent = t.disclaimerLink;
 
-    const copyBtns = document.querySelectorAll('.copy-btn');
-    copyBtns.forEach(btn => btn.textContent = t.copyButton);
+    // Update share section
+    document.getElementById('share-title').textContent = t.shareTitle;
+    document.getElementById('share-native-text').textContent = t.shareNative;
+    document.getElementById('share-twitter-text').textContent = t.shareTwitter;
+    document.getElementById('share-facebook-text').textContent = t.shareFacebook;
+    document.getElementById('share-whatsapp-text').textContent = t.shareWhatsApp;
+    document.getElementById('share-telegram-text').textContent = t.shareTelegram;
+
+    // Update share links
+    updateShareLinks(lang);
 
     // Set text direction for RTL languages
     if (rtlLanguages.includes(lang)) {
@@ -241,7 +283,7 @@ function generateQRCode() {
     const qrcodeContainer = document.getElementById('qrcode');
     qrcodeContainer.innerHTML = ''; // Clear existing QR code
 
-    const currentUrl = window.location.origin || 'https://your-manifest-site.vercel.app';
+    const currentUrl = window.location.origin || 'https://myday29.com';
 
     // Update URL text
     document.getElementById('url-text').textContent = currentUrl;
@@ -255,6 +297,50 @@ function generateQRCode() {
         colorLight: '#ffffff',
         correctLevel: QRCode.CorrectLevel.H
     });
+}
+
+// Update share links
+function updateShareLinks(lang) {
+    const t = translations[lang];
+    const url = encodeURIComponent(window.location.href || 'https://myday29.com');
+    const text = encodeURIComponent(t.shareText);
+
+    // Twitter/X
+    document.getElementById('share-twitter').href =
+        `https://twitter.com/intent/tweet?text=${text}&url=${url}`;
+
+    // Facebook
+    document.getElementById('share-facebook').href =
+        `https://www.facebook.com/sharer/sharer.php?u=${url}`;
+
+    // WhatsApp
+    document.getElementById('share-whatsapp').href =
+        `https://wa.me/?text=${text}%20${url}`;
+
+    // Telegram
+    document.getElementById('share-telegram').href =
+        `https://t.me/share/url?url=${url}&text=${text}`;
+}
+
+// Native share function (for mobile devices)
+async function nativeShare() {
+    const lang = document.getElementById('lang').value;
+    const t = translations[lang];
+
+    if (navigator.share) {
+        try {
+            await navigator.share({
+                title: 'My Day 29',
+                text: t.shareText,
+                url: window.location.href || 'https://myday29.com'
+            });
+        } catch (err) {
+            // User cancelled or error occurred
+            if (err.name !== 'AbortError') {
+                console.error('Error sharing:', err);
+            }
+        }
+    }
 }
 
 // Initialize on page load
@@ -272,6 +358,11 @@ document.addEventListener('DOMContentLoaded', () => {
 
     // Generate QR code
     generateQRCode();
+
+    // Check if native share is supported (mostly mobile devices)
+    if (navigator.share) {
+        document.getElementById('native-share-btn').style.display = 'inline-flex';
+    }
 
     // Check if user has already voted
     if (hasVoted()) {
