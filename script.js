@@ -347,7 +347,7 @@ function generateQRCode() {
     const qrcodeContainer = document.getElementById('qrcode');
     qrcodeContainer.innerHTML = ''; // Clear existing QR code
 
-    const currentUrl = window.location.origin || 'https://myday29.com';
+    const currentUrl = 'https://myday29.com/';
 
     // Update URL text
     document.getElementById('url-text').textContent = currentUrl;
