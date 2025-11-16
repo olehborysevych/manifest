@@ -273,6 +273,14 @@ body[dir="rtl"] .content p {
     background-color: #006699;
 }
 
+.share-btn-calendar {
+    background-color: #ff6b35;
+}
+
+.share-btn-calendar:hover {
+    background-color: #e55a2b;
+}
+
 /* Disclaimer page specific styles */
 .disclaimer-footer {
     margin-top: 30px;

@@ -25,7 +25,8 @@ const translations = {
         shareTwitter: "Twitter",
         shareFacebook: "Facebook",
         shareWhatsApp: "WhatsApp",
-        shareTelegram: "Telegram"
+        shareTelegram: "Telegram",
+        addToCalendar: "Add to Calendar"
     },
     uk: {
         title: "Наш Маніфест",
@@ -49,7 +50,8 @@ const translations = {
         shareTwitter: "Twitter",
         shareFacebook: "Facebook",
         shareWhatsApp: "WhatsApp",
-        shareTelegram: "Telegram"
+        shareTelegram: "Telegram",
+        addToCalendar: "Додати в календар"
     },
     es: {
         title: "Nuestro Manifiesto",
@@ -73,7 +75,8 @@ const translations = {
         shareTwitter: "Twitter",
         shareFacebook: "Facebook",
         shareWhatsApp: "WhatsApp",
-        shareTelegram: "Telegram"
+        shareTelegram: "Telegram",
+        addToCalendar: "Añadir al calendario"
     },
     fr: {
         title: "Notre Manifeste",
@@ -97,7 +100,8 @@ const translations = {
         shareTwitter: "Twitter",
         shareFacebook: "Facebook",
         shareWhatsApp: "WhatsApp",
-        shareTelegram: "Telegram"
+        shareTelegram: "Telegram",
+        addToCalendar: "Ajouter au calendrier"
     },
     de: {
         title: "Unser Manifest",
@@ -121,7 +125,8 @@ const translations = {
         shareTwitter: "Twitter",
         shareFacebook: "Facebook",
         shareWhatsApp: "WhatsApp",
-        shareTelegram: "Telegram"
+        shareTelegram: "Telegram",
+        addToCalendar: "Zum Kalender hinzufügen"
     }
 };
 
@@ -157,6 +162,7 @@ function changeLanguage(lang) {
     document.getElementById('share-facebook-text').textContent = t.shareFacebook;
     document.getElementById('share-whatsapp-text').textContent = t.shareWhatsApp;
     document.getElementById('share-telegram-text').textContent = t.shareTelegram;
+    document.getElementById('add-calendar-text').textContent = t.addToCalendar;
 
     // Update share links
     updateShareLinks(lang);
@@ -341,6 +347,94 @@ async function nativeShare() {
             }
         }
     }
+}
+
+// Calculate the next February 29th (leap day)
+function getNextLeapDay() {
+    const now = new Date();
+    const currentYear = now.getFullYear();
+
+    // Check if current year is a leap year and if Feb 29 hasn't passed yet
+    const thisYearLeapDay = new Date(currentYear, 1, 29);
+    if (isLeapYear(currentYear) && now < thisYearLeapDay) {
+        return thisYearLeapDay;
+    }
+
+    // Find the next leap year
+    for (let year = currentYear + 1; year <= currentYear + 4; year++) {
+        if (isLeapYear(year)) {
+            return new Date(year, 1, 29);
+        }
+    }
+
+    // Fallback (should never reach here)
+    return new Date(currentYear + 4, 1, 29);
+}
+
+// Check if a year is a leap year
+function isLeapYear(year) {
+    return (year % 4 === 0 && year % 100 !== 0) || (year % 400 === 0);
+}
+
+// Format date for iCalendar (YYYYMMDD)
+function formatICalDate(date) {
+    const year = date.getFullYear();
+    const month = String(date.getMonth() + 1).padStart(2, '0');
+    const day = String(date.getDate()).padStart(2, '0');
+    return `${year}${month}${day}`;
+}
+
+// Format datetime for iCalendar (YYYYMMDDTHHMMSSZ)
+function formatICalDateTime(date) {
+    const year = date.getFullYear();
+    const month = String(date.getMonth() + 1).padStart(2, '0');
+    const day = String(date.getDate()).padStart(2, '0');
+    const hours = String(date.getHours()).padStart(2, '0');
+    const minutes = String(date.getMinutes()).padStart(2, '0');
+    const seconds = String(date.getSeconds()).padStart(2, '0');
+    return `${year}${month}${day}T${hours}${minutes}${seconds}Z`;
+}
+
+// Add to calendar function
+function addToCalendar() {
+    const lang = document.getElementById('lang').value;
+    const t = translations[lang];
+
+    const leapDay = getNextLeapDay();
+    const eventDate = formatICalDate(leapDay);
+    const now = new Date();
+    const timestamp = formatICalDateTime(now);
+
+    // Create iCalendar content
+    const icsContent = [
+        'BEGIN:VCALENDAR',
+        'VERSION:2.0',
+        'PRODID:-//My Day 29//Calendar//EN',
+        'CALSCALE:GREGORIAN',
+        'METHOD:PUBLISH',
+        'BEGIN:VEVENT',
+        `DTSTART;VALUE=DATE:${eventDate}`,
+        `DTEND;VALUE=DATE:${eventDate}`,
+        `DTSTAMP:${timestamp}`,
+        `UID:myday29-${eventDate}@myday29.com`,
+        'SUMMARY:My Day 29 - Take February 29th Off!',
+        'DESCRIPTION:Leap Day - A global day off! Join the My Day 29 movement.',
+        'STATUS:CONFIRMED',
+        'SEQUENCE:0',
+        'TRANSP:TRANSPARENT',
+        'END:VEVENT',
+        'END:VCALENDAR'
+    ].join('\r\n');
+
+    // Create blob and download
+    const blob = new Blob([icsContent], { type: 'text/calendar;charset=utf-8' });
+    const link = document.createElement('a');
+    link.href = window.URL.createObjectURL(blob);
+    link.download = `my-day-29-${leapDay.getFullYear()}.ics`;
+    document.body.appendChild(link);
+    link.click();
+    document.body.removeChild(link);
+    window.URL.revokeObjectURL(link.href);
 }
 
 // Initialize on page load
