@@ -23,15 +23,19 @@ function applyTheme(theme) {
     localStorage.setItem('preferredTheme', theme);
 }
 
-function toggleTheme() {
-    const currentTheme = document.documentElement.getAttribute('data-theme') || 'light';
-    const newTheme = currentTheme === 'dark' ? 'light' : 'dark';
-    applyTheme(newTheme);
+function changeTheme(theme) {
+    applyTheme(theme);
 
     // Regenerate QR code with new colors
     if (typeof generateQRCode === 'function') {
         generateQRCode();
     }
+}
+
+function toggleTheme() {
+    const currentTheme = document.documentElement.getAttribute('data-theme') || 'light';
+    const newTheme = currentTheme === 'dark' ? 'light' : 'dark';
+    changeTheme(newTheme);
 }
 
 // Apply theme immediately to prevent flash
@@ -498,6 +502,10 @@ function addToCalendar() {
 
 // Initialize on page load
 document.addEventListener('DOMContentLoaded', () => {
+    // Detect and set theme
+    const currentTheme = document.documentElement.getAttribute('data-theme') || detectPreferredTheme();
+    document.getElementById('theme').value = currentTheme;
+
     // Detect and set language
     const savedLang = localStorage.getItem('preferredLanguage');
     const detectedLang = detectLanguage();

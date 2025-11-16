@@ -153,6 +153,11 @@ body[dir="rtl"] .content p {
     gap: 15px;
 }
 
+.language-selector label {
+    font-size: 14px;
+    color: var(--text-secondary);
+}
+
 .language-selector select {
     padding: 5px 10px;
     font-size: 14px;
@@ -161,62 +166,6 @@ body[dir="rtl"] .content p {
     background-color: var(--bg-primary);
     color: var(--text-primary);
     transition: background-color 0.3s ease, color 0.3s ease, border-color 0.3s ease;
-}
-
-/* Theme toggle switch */
-.theme-toggle {
-    display: flex;
-    align-items: center;
-    gap: 8px;
-    cursor: pointer;
-    user-select: none;
-}
-
-.theme-toggle-label {
-    font-size: 14px;
-    color: var(--text-secondary);
-}
-
-.toggle-switch {
-    position: relative;
-    width: 48px;
-    height: 24px;
-    background-color: var(--bg-secondary);
-    border-radius: 12px;
-    border: 1px solid var(--border-secondary);
-    transition: background-color 0.3s ease;
-    cursor: pointer;
-}
-
-.toggle-slider {
-    position: absolute;
-    top: 2px;
-    left: 2px;
-    width: 18px;
-    height: 18px;
-    background-color: var(--text-primary);
-    border-radius: 50%;
-    transition: transform 0.3s ease;
-}
-
-:root[data-theme="dark"] .toggle-slider {
-    transform: translateX(24px);
-}
-
-.toggle-icon {
-    position: absolute;
-    top: 50%;
-    transform: translateY(-50%);
-    font-size: 12px;
-    line-height: 1;
-}
-
-.sun-icon {
-    left: 5px;
-}
-
-.moon-icon {
-    right: 5px;
 }
 
 .content {
