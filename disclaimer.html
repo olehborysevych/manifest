@@ -8,13 +8,11 @@
 </head>
 <body>
     <div class="no-print language-selector">
-        <div class="theme-toggle" onclick="toggleTheme()">
-            <div class="toggle-switch">
-                <span class="toggle-icon sun-icon">☀️</span>
-                <span class="toggle-icon moon-icon">🌙</span>
-                <div class="toggle-slider"></div>
-            </div>
-        </div>
+        <label for="theme">Theme:</label>
+        <select id="theme" onchange="changeTheme(this.value)">
+            <option value="light">Light</option>
+            <option value="dark">Dark</option>
+        </select>
         <label for="lang">Language:</label>
         <select id="lang" onchange="changeLanguage(this.value)">
             <option value="en">English</option>
