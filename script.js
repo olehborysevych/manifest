@@ -64,10 +64,10 @@ const translations = {
     en: {
         title: "Our Manifest",
         paragraphs: [
-            "This is a placeholder for your first paragraph. Replace this text with your actual message. You can write about your cause, mission, or any important information you want to share.",
-            "This is the second paragraph. Add more details about your message here. Explain the context, background, or reasoning behind your initiative.",
-            "This is the third paragraph. You can include calls to action, important facts, or additional information that supports your message.",
-            "Final paragraph with concluding thoughts. Summarize your key points or provide next steps for people who want to get involved or learn more."
+            "I take a day off on the 29th of February.",
+            "Every four years, the calendar grants us an extra day. A day that exists outside the normal rhythm of our lives. A day that appears as a gift from time itself. Why should we spend it working?",
+            "February 29th should be a global day of rest, celebration, and reflection. A day to break from routine, to spend time with loved ones, to pursue passions, or simply to breathe. It's a day that reminds us that time is precious and should be celebrated, not just counted.",
+            "Join us in making this vision a reality. Declare your intention. Take the leap day off. Share this movement. Together, we can transform February 29th into a day that belongs to everyone, everywhere."
         ],
         qrTitle: "Scan to Learn More",
         voteTitle: "Support This Message",
@@ -89,10 +89,10 @@ const translations = {
     uk: {
         title: "Наш Маніфест",
         paragraphs: [
-            "Це заповнювач для вашого першого абзацу. Замініть цей текст на ваше фактичне повідомлення. Ви можете написати про вашу справу, місію чи будь-яку важливу інформацію, якою хочете поділитися.",
-            "Це другий абзац. Додайте більше деталей про ваше повідомлення тут. Поясніть контекст, передумови або обґрунтування вашої ініціативи.",
-            "Це третій абзац. Ви можете включити заклики до дій, важливі факти або додаткову інформацію, що підтримує ваше повідомлення.",
-            "Останній абзац із заключними думками. Підсумуйте ключові моменти або надайте наступні кроки для людей, які хочуть долучитися чи дізнатися більше."
+            "Я беру вихідний 29 лютого.",
+            "Кожні чотири роки календар дарує нам додатковий день. День, який існує поза звичайним ритмом нашого життя. День, що з'являється як подарунок від самого часу. Чому ми повинні проводити його за роботою?",
+            "29 лютого має стати глобальним днем відпочинку, святкування та роздумів. Днем, щоб вирватися з рутини, провести час з близькими, займатися улюбленими справами або просто дихати. Це день, який нагадує нам, що час дорогоцінний і його слід святкувати, а не просто рахувати.",
+            "Приєднуйтесь до нас у втіленні цього бачення в реальність. Заявіть про свій намір. Візьміть високосний день вільним. Поділіться цим рухом. Разом ми можемо перетворити 29 лютого на день, який належить кожному, всюди."
         ],
         qrTitle: "Сканувати для детальної інформації",
         voteTitle: "Підтримати це повідомлення",
@@ -114,10 +114,10 @@ const translations = {
     es: {
         title: "Nuestro Manifiesto",
         paragraphs: [
-            "Este es un marcador de posición para su primer párrafo. Reemplace este texto con su mensaje real. Puede escribir sobre su causa, misión o cualquier información importante que desee compartir.",
-            "Este es el segundo párrafo. Agregue más detalles sobre su mensaje aquí. Explique el contexto, los antecedentes o el razonamiento detrás de su iniciativa.",
-            "Este es el tercer párrafo. Puede incluir llamadas a la acción, datos importantes o información adicional que respalde su mensaje.",
-            "Párrafo final con pensamientos finales. Resuma sus puntos clave o proporcione los próximos pasos para las personas que quieran participar o aprender más."
+            "Me tomo el día libre el 29 de febrero.",
+            "Cada cuatro años, el calendario nos regala un día extra. Un día que existe fuera del ritmo normal de nuestras vidas. Un día que aparece como un regalo del tiempo mismo. ¿Por qué deberíamos pasarlo trabajando?",
+            "El 29 de febrero debería ser un día global de descanso, celebración y reflexión. Un día para romper con la rutina, pasar tiempo con seres queridos, perseguir pasiones o simplemente respirar. Es un día que nos recuerda que el tiempo es precioso y debe celebrarse, no solo contarse.",
+            "Únete a nosotros para hacer realidad esta visión. Declara tu intención. Tómate el día bisiesto libre. Comparte este movimiento. Juntos, podemos transformar el 29 de febrero en un día que pertenezca a todos, en todas partes."
         ],
         qrTitle: "Escanear para aprender más",
         voteTitle: "Apoyar este mensaje",
@@ -139,10 +139,10 @@ const translations = {
     fr: {
         title: "Notre Manifeste",
         paragraphs: [
-            "Ceci est un espace réservé pour votre premier paragraphe. Remplacez ce texte par votre message réel. Vous pouvez écrire sur votre cause, votre mission ou toute information importante que vous souhaitez partager.",
-            "Ceci est le deuxième paragraphe. Ajoutez plus de détails sur votre message ici. Expliquez le contexte, l'arrière-plan ou le raisonnement derrière votre initiative.",
-            "Ceci est le troisième paragraphe. Vous pouvez inclure des appels à l'action, des faits importants ou des informations supplémentaires qui soutiennent votre message.",
-            "Dernier paragraphe avec des réflexions finales. Résumez vos points clés ou fournissez les prochaines étapes pour les personnes qui souhaitent s'impliquer ou en savoir plus."
+            "Je prends congé le 29 février.",
+            "Tous les quatre ans, le calendrier nous offre un jour supplémentaire. Un jour qui existe en dehors du rythme normal de nos vies. Un jour qui apparaît comme un cadeau du temps lui-même. Pourquoi devrions-nous le passer à travailler?",
+            "Le 29 février devrait être un jour mondial de repos, de célébration et de réflexion. Un jour pour rompre avec la routine, passer du temps avec nos proches, poursuivre nos passions ou simplement respirer. C'est un jour qui nous rappelle que le temps est précieux et doit être célébré, pas seulement compté.",
+            "Rejoignez-nous pour faire de cette vision une réalité. Déclarez votre intention. Prenez le jour bissextile de congé. Partagez ce mouvement. Ensemble, nous pouvons transformer le 29 février en un jour qui appartient à tous, partout."
         ],
         qrTitle: "Scanner pour en savoir plus",
         voteTitle: "Soutenir ce message",
@@ -164,10 +164,10 @@ const translations = {
     de: {
         title: "Unser Manifest",
         paragraphs: [
-            "Dies ist ein Platzhalter für Ihren ersten Absatz. Ersetzen Sie diesen Text durch Ihre tatsächliche Nachricht. Sie können über Ihr Anliegen, Ihre Mission oder wichtige Informationen schreiben, die Sie teilen möchten.",
-            "Dies ist der zweite Absatz. Fügen Sie hier weitere Details zu Ihrer Nachricht hinzu. Erklären Sie den Kontext, Hintergrund oder die Begründung hinter Ihrer Initiative.",
-            "Dies ist der dritte Absatz. Sie können Handlungsaufforderungen, wichtige Fakten oder zusätzliche Informationen einbeziehen, die Ihre Nachricht unterstützen.",
-            "Letzter Absatz mit abschließenden Gedanken. Fassen Sie Ihre Hauptpunkte zusammen oder geben Sie nächste Schritte für Menschen an, die sich engagieren oder mehr erfahren möchten."
+            "Ich nehme mir den 29. Februar frei.",
+            "Alle vier Jahre schenkt uns der Kalender einen zusätzlichen Tag. Ein Tag, der außerhalb des normalen Rhythmus unseres Lebens existiert. Ein Tag, der wie ein Geschenk der Zeit selbst erscheint. Warum sollten wir ihn mit Arbeiten verbringen?",
+            "Der 29. Februar sollte ein globaler Tag der Ruhe, des Feierns und der Besinnung sein. Ein Tag, um aus der Routine auszubrechen, Zeit mit geliebten Menschen zu verbringen, Leidenschaften nachzugehen oder einfach zu atmen. Es ist ein Tag, der uns daran erinnert, dass Zeit kostbar ist und gefeiert werden sollte, nicht nur gezählt.",
+            "Schließen Sie sich uns an, um diese Vision Wirklichkeit werden zu lassen. Erklären Sie Ihre Absicht. Nehmen Sie sich den Schalttag frei. Teilen Sie diese Bewegung. Gemeinsam können wir den 29. Februar in einen Tag verwandeln, der allen gehört, überall."
         ],
         qrTitle: "Scannen um mehr zu erfahren",
         voteTitle: "Diese Nachricht unterstützen",
